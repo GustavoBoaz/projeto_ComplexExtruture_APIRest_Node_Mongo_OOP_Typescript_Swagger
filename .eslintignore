@@ -1,0 +1,9 @@
+dist
+node_modules
+.eslintrc.js
+tsconfig.json
+coverage
+jest.config.js
+nyc.config.js
+src/tests
+swagger.js

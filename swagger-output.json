@@ -1,0 +1,473 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API Carshop",
+    "description": "Esta documentação é destinada ao projeto Carshop"
+  },
+  "host": "localhost:3013",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Car",
+      "description": "Endpoitns"
+    },
+    {
+      "name": "Motorcycle",
+      "description": "Endpoitns"
+    }
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/cars": {
+      "post": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Criar Car",
+        "description": "Endpoint para criar um Car.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Car data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Car criado!.",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/BodyNotFound"
+            },
+            "description": "Erro no corpo da requisição!."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Listar Cars",
+        "description": "Endpoint para listar Cars.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de Car!."
+          }
+        }
+      }
+    },
+    "/cars/{id}": {
+      "get": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Listar Car",
+        "description": "Endpoint para listar Car.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Car ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Car encontrado!.",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/IdNotFoundError"
+            },
+            "description": "Car não encontrado!."
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/IdInvalidError"
+            },
+            "description": "Id mal formatado!."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Atualizar Car",
+        "description": "Endpoint para atualizar um Car.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Car ID."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Car data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Car Alterado!.",
+            "schema": {
+              "$ref": "#/definitions/Car"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/IdNotFoundError"
+            },
+            "description": "Car não encontrado!."
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/IdInvalidError"
+            },
+            "description": "Id mal formatado!."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Car"
+        ],
+        "summary": "Deletar Car",
+        "description": "Endpoint para deletar Car.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Car ID."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Car deletado!."
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/IdNotFoundError"
+            },
+            "description": "Car não encontrado!."
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/IdInvalidError"
+            },
+            "description": "Id mal formatado!."
+          }
+        }
+      }
+    },
+    "/motorcycles": {
+      "post": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Criar Motorcycle",
+        "description": "Endpoint para criar um Motorcycle.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Motorcycle data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Motorcycle"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Car criado!.",
+            "schema": {
+              "$ref": "#/definitions/Motorcycle"
+            }
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/BodyNotFound"
+            },
+            "description": "Erro no corpo da requisição!."
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Listar Motorcycles",
+        "description": "Endpoint para listar Motorcycles.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Lista de Motorcycle!."
+          }
+        }
+      }
+    },
+    "/motorcycles/{id}": {
+      "get": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Listar Motorcycle",
+        "description": "Endpoint para listar Motorcycle.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Motorcycle ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Motorcycle encontrado!.",
+            "schema": {
+              "$ref": "#/definitions/Motorcycle"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/IdNotFoundError"
+            },
+            "description": "Motorcycle não encontrado!."
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/IdInvalidError"
+            },
+            "description": "Id mal formatado!."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Atualizar Motorcycle",
+        "description": "Endpoint para atualizar um Motorcycle.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Motorcycle ID."
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Motorcycle data.",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Motorcycle"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Motorcycle Alterado!.",
+            "schema": {
+              "$ref": "#/definitions/Motorcycle"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/IdNotFoundError"
+            },
+            "description": "Motorcycle não encontrado!."
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/IdInvalidError"
+            },
+            "description": "Id mal formatado!."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Motorcycle"
+        ],
+        "summary": "Deletar Motorcycle",
+        "description": "Endpoint para deletar Motorcycle.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Motorcycle ID."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Motorcycle deletado!."
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/IdNotFoundError"
+            },
+            "description": "Motorcycle não encontrado!."
+          },
+          "422": {
+            "schema": {
+              "$ref": "#/definitions/IdInvalidError"
+            },
+            "description": "Id mal formatado!."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Car": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "example": "Reno Clio"
+        },
+        "year": {
+          "type": "number",
+          "example": 2008
+        },
+        "color": {
+          "type": "string",
+          "example": "White"
+        },
+        "status": {
+          "type": "boolean",
+          "example": true
+        },
+        "buyValue": {
+          "type": "number",
+          "example": 10000
+        },
+        "doorsQty": {
+          "type": "number",
+          "example": 4
+        },
+        "seatsQty": {
+          "type": "number",
+          "example": 5
+        }
+      },
+      "required": [
+        "model",
+        "year",
+        "color",
+        "buyValue",
+        "doorsQty",
+        "seatsQty"
+      ]
+    },
+    "Motorcycle": {
+      "type": "object",
+      "properties": {
+        "model": {
+          "type": "string",
+          "example": "Honda CG Titan 125"
+        },
+        "year": {
+          "type": "number",
+          "example": 2005
+        },
+        "color": {
+          "type": "string",
+          "example": "Black"
+        },
+        "status": {
+          "type": "boolean",
+          "example": true
+        },
+        "buyValue": {
+          "type": "number",
+          "example": 6500
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Street",
+            "Custom",
+            "Trail"
+          ]
+        },
+        "engineCapacity": {
+          "type": "number",
+          "example": 125
+        }
+      },
+      "required": [
+        "model",
+        "year",
+        "color",
+        "buyValue",
+        "category",
+        "engineCapacity"
+      ]
+    },
+    "BodyNotFound": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Body not found"
+        }
+      }
+    },
+    "IdInvalidError": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Invalid mongo id"
+        }
+      }
+    },
+    "IdNotFoundError": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "example": "Car not found"
+        }
+      }
+    }
+  }
+}
